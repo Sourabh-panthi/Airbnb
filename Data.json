@@ -1,0 +1,37 @@
+[
+  {
+    "img": "https://links.papareact.com/1to",
+    "location": "Manchester",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/40m",
+    "location": "Liverpool",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/msp",
+    "location": "New York",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/2k3",
+    "location": "Cardiff",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/ynx",
+    "location": "Birkenhead",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/kji",
+    "location": "Newquay",
+    "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/41m",
+    "location": "Hove",
+    "distance": "45-min-drive"
+  }
+]

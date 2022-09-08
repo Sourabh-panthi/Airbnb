@@ -1,11 +1,10 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
-const CardData = ({img, title}) => {
-    console.log('img :>> ', img);
+const CardData = ({ img, title }) => {
   return (
-    <div className='grid    '>
-         <div className="relative h-60 w-60 mx-5 my-2">
+    <div className="cursor-pointer hover:scale-105 transsition transform duration-300 ease-out ">
+      <div className="relative h-60 w-60 my-2">
         <Image
           src={img}
           layout="fill"
@@ -13,10 +12,10 @@ const CardData = ({img, title}) => {
           className="rounded-lg"
           priority
         />
-        </div>
-            <p>{title}</p>
+      </div>
+      <p className="text-xl font-semibold mt-3 ml-3">{title}</p>
     </div>
-  )
-}
+  );
+};
 
-export default CardData
+export default CardData;

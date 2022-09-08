@@ -9,7 +9,8 @@ const SmallCard = ({ img, location, distance }) => {
           src={img}
           layout="fill"
           objectFit="contain"
-          className="rounded-lg "
+          className="rounded-lg"
+          priority
         />
       </div>
       <div>

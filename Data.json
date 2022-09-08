@@ -1,4 +1,4 @@
-[
+let data=[[
   {
     "img": "https://links.papareact.com/1to",
     "location": "Manchester",
@@ -11,7 +11,7 @@
   },
   {
     "img": "https://links.papareact.com/msp",
-    "location": "New York",
+    "location": "Sidny",
     "distance": "45-min-drive"
   },
   {
@@ -33,5 +33,26 @@
     "img": "https://links.papareact.com/41m",
     "location": "Hove",
     "distance": "45-min-drive"
+  },
+  {
+    "img": "https://links.papareact.com/msp",
+    "location": "New York",
+    "distance": "45-min-drive"
   }
+]
+,
+[  {
+  "img": "https://links.papareact.com/2io",
+  "title": "Outdoor gateways",
+},{
+  "img": "https://links.papareact.com/q7j",
+  "title": "Unique styas",
+},{
+  "img": "https://links.papareact.com/s03",
+  "title": "Western houses",
+},{
+  "img": "https://links.papareact.com/8ix",
+  "title": "Pats allowed",
+}
+]
 ]

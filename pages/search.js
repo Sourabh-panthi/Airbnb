@@ -4,11 +4,12 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { parseISO, format } from "date-fns";
 
-const Saarch = () => {
+const Saarch = ({ hotelList }) => {
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
   const [StartD, setStartD] = useState();
   const [EndD, setEndD] = useState();
+  console.log("hotelList", hotelList);
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -42,39 +43,15 @@ const Saarch = () => {
 
 export default Saarch;
 
-const axios = require("axios");
+export const getServerSideProps = async () => {
+  const hotelList = await fetch(
+    "http://fake-hotel-api.herokuapp.com/api/hotels"
+  ).then((res) => res.json());
 
-const options = {
-  method: "GET",
-  url: "https://booking-com.p.rapidapi.com/v1/hotels/search",
-  params: {
-    checkout_date: "2022-10-01",
-    units: "metric",
-    dest_id: "-553173",
-    dest_type: "city",
-    locale: "en-gb",
-    adults_number: "2",
-    order_by: "popularity",
-    filter_by_currency: "AED",
-    checkin_date: "2022-09-30",
-    room_number: "1",
-    children_number: "2",
-    page_number: "0",
-    children_ages: "5,0",
-    categories_filter_ids: "class::2,class::4,free_cancellation::1",
-    include_adjacency: "true",
-  },
-  headers: {
-    "X-RapidAPI-Key": "844bb4d3f3mshe539ce0d9cdc19cp1db50cjsn5990ce11d0f1",
-    "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
-  },
+  console.log("exploreData :>> ", hotelList);
+  return {
+    props: {
+      hotelList,
+    },
+  };
 };
-
-axios
-  .request(options)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.error(error);
-  });

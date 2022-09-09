@@ -26,7 +26,6 @@ const Header = ({ placeholder }) => {
     key: "selection",
   };
   const handleSelect = (ranges) => {
-    console.log("ranges", ranges);
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   };

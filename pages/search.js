@@ -3,13 +3,14 @@ import { useRouter } from "next/dist/client/router";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { parseISO, format } from "date-fns";
-
+import InfoCard from "../Components/InfoCard";
+import Maps from "../Components/Map";
 const Saarch = ({ hotelList }) => {
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
   const [StartD, setStartD] = useState();
   const [EndD, setEndD] = useState();
-  console.log("hotelList", hotelList);
+  const hotelsData = hotelList.data.body.searchResults.results;
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -21,7 +22,7 @@ const Saarch = ({ hotelList }) => {
   return (
     <div>
       <Header placeholder={`${location} | ${range} | ${noOfGuests}`} />
-      <main>
+      <main className="flex flex-col">
         <section className="px-6 pt-11 flex-grow">
           <p className="text-xs">
             300+ Stays {range} for {noOfGuests} guests
@@ -34,6 +35,36 @@ const Saarch = ({ hotelList }) => {
             <p className="button">Rooms and Beds</p>
             <p className="button">More filters</p>
           </div>
+          <div>
+            {hotelsData &&
+              hotelsData.map(
+                ({
+                  address,
+                  coordinate,
+                  guestReviews,
+                  landmarks,
+                  name,
+                  id,
+                  optimizedThumbUrls,
+                  ratePlan,
+                }) => (
+                  <InfoCard
+                    key={id}
+                    address={address}
+                    coordinate={coordinate}
+                    guestReviews={guestReviews}
+                    landmarks={landmarks}
+                    name={name}
+                    id={id}
+                    optimizedThumbUrls={optimizedThumbUrls}
+                    ratePlan={ratePlan}
+                  />
+                )
+              )}
+          </div>
+        </section>
+        <section className="w-[100%] shadow-lg p-10 border rounded-xl">
+          <Maps hotelsData={hotelsData} />
         </section>
       </main>
       <Footer />
@@ -44,11 +75,19 @@ const Saarch = ({ hotelList }) => {
 export default Saarch;
 
 export const getServerSideProps = async () => {
-  const hotelList = await fetch(
-    "http://fake-hotel-api.herokuapp.com/api/hotels"
-  ).then((res) => res.json());
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "844bb4d3f3mshe539ce0d9cdc19cp1db50cjsn5990ce11d0f1",
+      "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
+    },
+  };
 
-  console.log("exploreData :>> ", hotelList);
+  const hotelList = await fetch(
+    "https://hotels4.p.rapidapi.com/properties/list?destinationId=1506246&pageNumber=1&pageSize=25&checkIn=2022-10-12&checkOut=2022-10-14&adults1=1&sortOrder=PRICE&locale=en_US&currency=USD",
+    options
+  ).then((response) => response.json());
+
   return {
     props: {
       hotelList,

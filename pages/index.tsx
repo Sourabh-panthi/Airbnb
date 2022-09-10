@@ -15,6 +15,11 @@ function Home({ exploreData, LCardData }) {
           rel="icon"
           href="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_airbnb-256.png"
         />
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+        <link
+          href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+          rel="stylesheet"
+        />
       </Head>
       <Header />
       <Banner />

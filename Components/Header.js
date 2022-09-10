@@ -5,7 +5,6 @@ import {
   GlobeAltIcon,
   MenuIcon,
   UserCircleIcon,
-  UserIcon,
   UsersIcon,
 } from "@heroicons/react/solid";
 import "react-date-range/dist/styles.css"; // main style file
@@ -54,6 +53,7 @@ const Header = ({ placeholder }) => {
           layout="fill"
           objectFit="contain"
           objectPosition="left"
+          priority
         />
       </div>
       <div className="flex py-2 items-center md:border-2 md:shadow-sm rounded-full ">

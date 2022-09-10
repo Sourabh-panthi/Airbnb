@@ -8,6 +8,7 @@ const Banner = () => {
         src="https://links.papareact.com/0fm"
         objectFit="cover"
         layout="fill"
+        priority
       />
       <div className="absolute top-1/2 text-center w-full">
         <p className="text-sm sm:text-lg">Not sure where to go? Perfect.</p>

@@ -10,6 +10,7 @@ const LargeCard = ({ img, title, description, buttonText }) => {
           layout="fill"
           objectFit="cover"
           className="rounded-xl"
+          priority
         />
         <div className="absolute top-10 left-12  ">
           <h3 className=" text-3xl w-60 mb-2">{title}</h3>

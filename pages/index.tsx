@@ -5,8 +5,24 @@ import SmallCard from "../Components/SmallCard";
 import CardData from "../Components/CardData";
 import LargeCard from "../Components/LargeCard";
 import Footer from "../Components/Footer";
+import Script from "next/script";
 
-function Home({ exploreData, LCardData }) {
+export async function getStaticProps() {
+  const exploreData = await fetch(
+    "https://json.extendsclass.com/bin/ad06fe0303c4"
+  ).then((res) => res.json());
+  const LCardData = await fetch(
+    "https://json.extendsclass.com/bin/4f46e2df5a67"
+  ).then((res) => res.json());
+  return {
+    props: {
+      exploreData,
+      LCardData,
+    },
+  };
+}
+
+function Home(props?: any) {
   return (
     <div>
       <Head>
@@ -15,26 +31,23 @@ function Home({ exploreData, LCardData }) {
           rel="icon"
           href="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_airbnb-256.png"
         />
-        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
-        <link
-          href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
-          rel="stylesheet"
-        />
+        <Script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></Script>
       </Head>
-      <Header />
+      <Header placeholder={false} />
       <Banner />
       <main className="max-w-5xl mx-auto px-8 sm:px-16">
         <section>
           <h2 className="text-2xl font-semibold py-3 pl-3 ">Explore Nearby</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-5">
-            {exploreData?.map(({ img, location, distance }) => (
-              <SmallCard
-                key={location}
-                img={img}
-                location={location}
-                distance={distance}
-              />
-            ))}
+            {props.exploreData &&
+              props.exploreData.map((item: any) => (
+                <SmallCard
+                  key={item.location}
+                  img={item.img}
+                  location={item.location}
+                  distance={item.distance}
+                />
+              ))}
           </div>
         </section>
         <section>
@@ -42,9 +55,10 @@ function Home({ exploreData, LCardData }) {
             Live Anywhere
           </h2>
           <div className="flex items-center overflow-scroll scrollbar-hide space-x-3 my-5">
-            {LCardData?.map(({ img, title }) => (
-              <CardData key={title} img={img} title={title} />
-            ))}
+            {props.LCardData &&
+              props.LCardData.map((item: any) => (
+                <CardData key={item.title} img={item.img} title={item.title} />
+              ))}
           </div>
         </section>
         <section>
@@ -62,18 +76,3 @@ function Home({ exploreData, LCardData }) {
 }
 
 export default Home;
-
-export async function getStaticProps() {
-  const exploreData = await fetch(
-    "https://json.extendsclass.com/bin/ad06fe0303c4"
-  ).then((res) => res.json());
-  const LCardData = await fetch(
-    "https://json.extendsclass.com/bin/4f46e2df5a67"
-  ).then((res) => res.json());
-  return {
-    props: {
-      exploreData,
-      LCardData,
-    },
-  };
-}

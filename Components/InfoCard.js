@@ -13,6 +13,7 @@ const InfoCard = ({
   optimizedThumbUrls,
   ratePlan,
 }) => {
+  console.log(guestReviews);
   return (
     <div className="flex py-7 px-2 pr-4 border-b cursor-pointer hover:opacity-80 hover:shadow-lg transition  duration-200 ease-out first:border-t ">
       <div className="relative h-36 w-40 md:h-52 md:w-80 flex-shrink-0">
@@ -32,15 +33,20 @@ const InfoCard = ({
         <p>{address.streetAddress}</p>
         <div className="flex justify-between items-end md:pt-16 pt-3">
           <p className="flex items-center">
-            <StarIcon className="h-5 text-red-400" /> {guestReviews.rating}
+            <StarIcon className="h-5 text-red-400" />
+            {guestReviews?.rating
+              ? `${guestReviews.rating} / ${guestReviews.scale}`
+              : "4.6 / 10"}
           </p>
           <div>
             <p className="text-lg lg:text-2xl font-semibold pb-2">
               {ratePlan.price.current}/night
             </p>
-            <p className="text-right font-extralight">
-              Old Price - {ratePlan.price.old}
-            </p>
+            {ratePlan.price.old ? (
+              <p className="text-right font-extralight">
+                Old Price - {ratePlan.price.old}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ const Saarch = ({ hotelList }) => {
   const [StartD, setStartD] = useState();
   const [EndD, setEndD] = useState();
   const hotelsData = hotelList.data.body.searchResults.results;
-
   useEffect(() => {
     if (startDate && endDate) {
       setStartD(format(parseISO(startDate), "dd-MMMM-yy"));
@@ -22,13 +21,13 @@ const Saarch = ({ hotelList }) => {
   return (
     <div>
       <Header placeholder={`${location} | ${range} | ${noOfGuests}`} />
-      <main className="flex flex-col">
+      <main className="max-w-6xl mx-auto flex flex-col">
         <section className="px-6 pt-11 flex-grow">
           <p className="text-xs">
             300+ Stays {range} for {noOfGuests} guests
           </p>
           <h1 className="font-bold text-2xl mt-3 mb-5"> Stays in {location}</h1>
-          <div className="hidden md:inline-flex flex whitespace-nowrap space-x-3 mb-5 ">
+          <div className="hidden md:inline-flex whitespace-nowrap space-x-3 mb-5 ">
             <p className="button">Cancellation Flexibility</p>
             <p className="button">Type of Place</p>
             <p className="button">price</p>
@@ -63,7 +62,7 @@ const Saarch = ({ hotelList }) => {
               )}
           </div>
         </section>
-        <section className="w-[100%] shadow-lg p-10 border rounded-xl">
+        <section className="m-5 shadow-lg p-10 border rounded-xl">
           <Maps hotelsData={hotelsData} />
         </section>
       </main>
